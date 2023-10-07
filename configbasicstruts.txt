@@ -1,0 +1,60 @@
+Cấu trúc cơ bản của dự án: 
+
+my-struts-app/
+├── WEB-INF/
+│   ├── classes/
+│   ├── lib/
+│   ├── src/
+│   │   └── com/
+│   │       └── example/
+│   |           ├── actions/
+│   │           ├── forms/
+│   ├── struts-config.xml
+│   ├── web.xml
+├── index.jsp
+├── other-pages.jsp
+
+Giải thích:
+WEB-INF: Thư mục này chứa các tài nguyên ẩn và tệp cấu hình.
+WEB-INF/classes: Thư mục này chứa các file .class của ứng dụng.
+WEB-INF/lib: Thư mục này chứa các thư viện (JAR files) của ứng dụng.
+WEB-INF/src: Thư mục này chứa mã nguồn của ứng dụng.
+WEB-INF/struts-config.xml: Tệp cấu hình Struts.
+WEB-INF/web.xml: Tệp cấu hình Servlet.
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" 
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+    <!-- Display Name và Description (Tuỳ chọn) -->
+    <display-name>Your Struts Application</display-name>
+    <description>Struts Configuration File</description>
+
+    <!-- Định nghĩa Form Beans -->
+    <form-beans>
+        <!-- Các form-bean ở đây -->
+    </form-beans>
+
+    <!-- Định nghĩa Global Exceptions (Tuỳ chọn) -->
+    <global-exceptions>
+        <!-- Các global-exception ở đây -->
+    </global-exceptions>
+
+    <!-- Định nghĩa Global Forwards (Tuỳ chọn) -->
+    <global-forwards>
+        <!-- Các global-forward ở đây -->
+    </global-forwards>
+
+    <!-- Định nghĩa Action Mappings -->
+    <action-mappings>
+        <!-- Các action mapping ở đây -->
+    </action-mappings>
+
+    <!-- Định nghĩa Message Resources -->
+    <message-resources parameter="messages" />
+
+    <!-- Định nghĩa các phần khác (Tuỳ chọn) -->
+</struts-config>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC 
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" 
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean
+            name="loginBean"
+            type="fjs.cs.dto.mstuser"/>
+        <form-bean
+            name="searchBean"
+            type="fjs.cs.dto.mstcustomer"/>
+		</form-beans>
+		
+	<global-forwards>
+        <forward
+        	name="T001"
+        	path="/pages/T001.jsp"/>
+        <forward
+        	name="T002"
+        	path="/pages/T002.jsp"/>
+        <forward
+        	name="T003"
+        	path="/pages/T003.jsp"/>
+    </global-forwards>
+    <action-mappings>
+        <action
+        	input="/pages/T001.jsp"
+           	path="/T001"
+            type="fjs.cs.action.T001"
+            validate="true"
+            name="loginBean"
+			scope="request">
+            <forward name="success" path="/T002.do"/>
+            <forward name="fail" path="/pages/T001.jsp"/>
+        </action>
+        <action
+        	input="/pages/T002.jsp"
+           	path="/T002"
+            type="fjs.cs.action.T002"
+            validate="true"
+            name="searchBean"
+			scope="request">
+			 <forward name="successT002" path="/pages/T002.jsp"/>
+        </action>
+        
+        <action
+        	input="/pages/T003.jsp"
+           	path="/pages/T003"
+            type="fjs.cs.action.T003"
+            validate="true"
+            name="searchBean"
+			scope="request">
+            <forward name="T002" path="/T002.do"/>
+            <forward name="T003" path="/pages/T003.jsp"/>
+        </action>
+	</action-mappings>
+	
+	<message-resources parameter="messages" />
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+    <set-property property="definitions-config"
+        value="/WEB-INF/tiles-defs.xml" />
+    <set-property property="moduleAware" value="true" />
+</plug-in>
+</struts-config>

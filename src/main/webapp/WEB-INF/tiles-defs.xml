@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache
+Software Foundation//DTD Tiles Configuration 1.1//EN"
+"http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+<tiles-definitions>
+    <definition name="baseLayout" path="/WEB-INF/layouts/baseLayout.jsp"/>
+    <definition name="T001" extends="baseLayout">
+        <put name="title" value="Màn hình T001"/>
+        <put name="body" value="/WEB-INF/views/T001.jsp"/>
+    </definition>
+    <definition name="T002" extends="baseLayout">
+        <put name="title" value="Màn hình T002"/>
+        <put name="body" value="/WEB-INF/views/T002.jsp"/>
+    </definition>
+    <definition name="T003" extends="baseLayout">
+        <put name="title" value="Màn hình T003"/>
+        <put name="body" value="/WEB-INF/views/T003.jsp"/>
+    </definition>
+</tiles-definitions>
