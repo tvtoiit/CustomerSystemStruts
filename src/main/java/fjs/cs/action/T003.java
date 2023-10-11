@@ -15,14 +15,6 @@ import fjs.cs.dao.impl.T003DaoImp;
 import fjs.cs.dto.mstcustomer;
 
 public class T003 extends Action {
-	private void updateCustomer(mstcustomer dto, T003DaoImp t003Dao) {
-	    t003Dao.update(dto);
-	}
-	
-	private void saveCustomer(mstcustomer dto, T003DaoImp t003Dao, BigDecimal loggedInPsnCd) {
-	    t003Dao.save(dto, loggedInPsnCd);
-	}
-	
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
@@ -52,21 +44,20 @@ public class T003 extends Action {
         }
         
         dto.setCustomerName(customerName);
-	    
         dto.setSex(sex);
 	    dto.setBirthDay(birthday);
 	    dto.setEmail(email);
 	    dto.setAddress(address);
         
-	 // Lấy giá trị loggedInPsnCd từ session
+	 // Lấy giá trị loggedInPsnCd từ session T001
 	    HttpSession session = request.getSession();
 	    BigDecimal loggedInPsnCd = (BigDecimal) session.getAttribute("loggedInPsnCd");
 	    
         if (customerId != null) {
         	dto.setCustomerId(customerId);
-        	updateCustomer(dto, t003Dao); 
+        	 t003Dao.update(dto);
         }else {
-        	saveCustomer(dto, t003Dao,loggedInPsnCd);
+        	t003Dao.save(dto, loggedInPsnCd);
         }
         return mapping.findForward("T002");
 	}

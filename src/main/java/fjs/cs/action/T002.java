@@ -26,8 +26,6 @@ public class T002 extends Action {
 		return mapping.findForward("successT002");
 	}
 	
-	
-	
 	private void showData(HttpServletRequest req, List<mstcustomer> result) {
 	    t002Dto.setPageData(result); 
 	    req.setAttribute("model", t002Dto);

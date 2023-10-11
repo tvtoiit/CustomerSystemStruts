@@ -12,18 +12,13 @@
             name="searchBean"
             type="fjs.cs.dto.mstcustomer"/>
 		</form-beans>
-		
-	<global-forwards>
+	
+	 <global-forwards>
         <forward
         	name="T001"
         	path="/pages/T001.jsp"/>
-        <forward
-        	name="T002"
-        	path="/pages/T002.jsp"/>
-        <forward
-        	name="T003"
-        	path="/pages/T003.jsp"/>
-    </global-forwards>
+    </global-forwards> 
+    
     <action-mappings>
         <action
         	input="/pages/T001.jsp"
@@ -34,27 +29,50 @@
 			scope="request">
             <forward name="success" path="/T002.do"/>
             <forward name="fail" path="/pages/T001.jsp"/>
+            
         </action>
+       
         <action
         	input="/pages/T002.jsp"
            	path="/T002"
             type="fjs.cs.action.T002"
-            validate="true"
+            validate="false"
             name="searchBean"
 			scope="request">
 			 <forward name="successT002" path="/pages/T002.jsp"/>
         </action>
         
-        <action
+        <action 
         	input="/pages/T003.jsp"
-           	path="/pages/T003"
-            type="fjs.cs.action.T003"
-            validate="true"
-            name="searchBean"
-			scope="request">
-            <forward name="T002" path="/T002.do"/>
-            <forward name="T003" path="/pages/T003.jsp"/>
+        	path="/T003"
+        	validate="true"
+        	type="fjs.cs.action.T003"
+        	name="searchBean"
+        	scope="request">
+        	<forward name="T002" path="/T002.do"/>
+        	<forward name="T003" path="/pages/T003.jsp"/>
         </action>
+        <action
+        	path="/save-user"
+        	type="org.apache.struts.actions.ForwardAction"
+        	parameter="/pages/T003.jsp">
+        </action>
+        
+       <!-- <action 
+        	path="/save-user" 
+        	type="fjs.cs.action.T003" 
+        	name="searchBean"
+        	parameter="saveCustomer">
+        	 <forward name="T002" path="/T002.do"/>
+        </action>
+         <action 
+        	path="/edit-user" 
+        	type="fjs.cs.action.T003" 
+        	name="searchBean"
+        	parameter="updateCustomer">
+        	 <forward name="T002" path="/T002.do"/>
+        	 <forward name="T003" path="/pages/T003.jsp"/>
+        </action>  -->
 	</action-mappings>
 	
 	<message-resources parameter="messages" />

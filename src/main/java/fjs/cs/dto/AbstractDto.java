@@ -11,8 +11,8 @@ public class AbstractDto<T> extends ActionForm  {
 	private Timestamp insertYmd;
 	private Integer insertPsnCd;
 	private Timestamp updateYmd;
-	private List<T> pageData;
 	private Integer updatePsnCd;
+	private List<T> pageData;
 	private Integer page;
 
 	public Integer getPage() {
