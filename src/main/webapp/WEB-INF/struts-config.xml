@@ -36,7 +36,7 @@
         	input="/pages/T002.jsp"
            	path="/T002"
             type="fjs.cs.action.T002"
-            validate="false"
+            validate="true"
             name="searchBean"
 			scope="request">
 			 <forward name="successT002" path="/pages/T002.jsp"/>

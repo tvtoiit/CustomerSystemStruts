@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
 
 public class mstcustomer extends AbstractDto<mstcustomer> {
 	private static final long serialVersionUID = 1L;
@@ -14,20 +13,83 @@ public class mstcustomer extends AbstractDto<mstcustomer> {
 	private String customerName;
 	private String sex;
 	private String birthDay;
+	private String txtCustomerName;
+	private String txtBirthdayFromName;
+	private String txtBirthdayToName;
 	private String email;
 	private String address;
+	private String action;
+	private String pageAction;
+	private String currentPage;
+	private String[] selectedCustomers;
 	
 	public mstcustomer() {
 		
 	}
 	
-	public mstcustomer(BigDecimal customerId, String customerName, String sex, String birthDay, String email, String address) {
+	public mstcustomer(String txtCustomerName, String txtBirthdayFromName, String  txtBirthdayToName, BigDecimal customerId, String customerName, String sex, String birthDay, String email, String address) {
 		this.customerId = customerId;
 		this.customerName = customerName;
 		this.sex = sex;
 		this.birthDay = birthDay;
 		this.email = email;
 		this.address = address;
+	}
+	
+	public String getcurrentPage() {
+		return currentPage;
+	}
+
+	public void setcurrentPage(String currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public String getPageAction() {
+		return pageAction;
+	}
+
+	public void setPageAction(String pageAction) {
+		this.pageAction = pageAction;
+	}
+
+	public String getAction() {
+		return action;
+	}
+
+	public void setAction(String action) {
+		this.action = action;
+	}
+
+	public String[] getSelectedCustomers() {
+		return selectedCustomers;
+	}
+
+	public void setSelectedCustomers(String[] selectedCustomers) {
+		this.selectedCustomers = selectedCustomers;
+	}
+
+	public String getTxtCustomerName() {
+		return txtCustomerName;
+	}
+
+	public void setTxtCustomerName(String txtCustomerName) {
+		this.txtCustomerName = txtCustomerName;
+	}
+
+	public String getTxtBirthdayFromName() {
+		return txtBirthdayFromName;
+	}
+
+	public void setTxtBirthdayFromName(String txtBirthdayFromName) {
+		this.txtBirthdayFromName = txtBirthdayFromName;
+	}
+
+	public String getTxtBirthdayToName() {
+		return txtBirthdayToName;
+	}
+
+	public void setTxtBirthdayToName(String txtBirthdayToName) {
+		this.txtBirthdayToName = txtBirthdayToName;
 	}
 
 	public BigDecimal getCustomerId() {

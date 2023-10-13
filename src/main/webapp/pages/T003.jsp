@@ -28,23 +28,23 @@
 					</div>
 				</logic:present>
 				</div>
-					<div class = "edit-container__wellcomRight edit-container__headerText">
-						<a href ="#" onclick = "Logout() ">Log Out</a>
+					<div class="edit-container__wellcomRight edit-container__headerText">
+						<a href ="#">Log Out</a>
 					</div>
 				</div>
 			<logic:empty name="dtoCustomerId">
-				<div class = "line-br">Add New</div>
+				<div class="line-br">Add New</div>
 			</logic:empty>
 			<logic:notEmpty name="dtoCustomerId">
-				<div class = "line-br">Edit</div>
+				<div class="line-br">Edit</div>
 			</logic:notEmpty>
 		</div>
-	<form action = "./T003.do" method ="POST">
-		<div class = "edit-container__content">
-			<div class = "edit-container__content--error">
+	<form action="./T003.do" method="POST">
+		<div class="edit-container__content">
+			<div class="edit-container__content--error">
 			</div>
-			<div class = "edit-container__content-Id">
-				<div class = "edit-container__content-IdText edit-container__headerText">Customer Id</div>
+			<div class="edit-container__content-Id">
+				<div class="edit-container__content-IdText edit-container__headerText">Customer Id</div>
 			</div>
 			
 			 <logic:notEmpty name="dtoCustomerId">
@@ -87,7 +87,7 @@
 			<div class="edit-container__content-Birthday edit-container__btnContent-margin">
 				<div class="edit-container__contentBirthday-input edit-container__headerText">Birthday</div>
 				<logic:empty name="dtoCustomerBirthDay">
-					<input id = "txtCustomerBirthday"  class="form-with__input" name="birthDay" maxlength ="10" value= ""/>
+					<input id="txtCustomerBirthday"  class="form-with__input" name="birthDay" maxlength ="10" value= ""/>
 				</logic:empty>
 				<logic:notEmpty name="dtoCustomerBirthDay">
 					<input id="txtCustomerBirthday"  class="form-with__input" value="<bean:write name="dtoCustomerBirthDay"/>" name = "birthDay" maxlength="10"/>
@@ -106,14 +106,14 @@
 				<div class="test-aline__editAddress">				
 					<div class="edit-container__contentAddress-input edit-container__headerText">Address</div>
 				</div>
-				<logic:empty  name="dtoCustomerAddress">
+				<logic:empty name="dtoCustomerAddress">
 					<textarea id="txaAddress" rows="3"  name="address"></textarea>
 				</logic:empty>
 				<logic:notEmpty name="dtoCustomerAddress">
 					<textarea id="txaAddress"  name="address"><bean:write name="dtoCustomerAddress"/></textarea>
 				</logic:notEmpty>
 			</div>
-			<div class = "edit-container__btnContent">
+			<div class="edit-container__btnContent">
 				<button type="submit" class="edit-container__btnContent-Save">Save</button>
 				<button type="button"  id="btnClearEdit" onclick="clearForm()" class="edit-container__btnContent-Clear">Clear</button>
 			</div>

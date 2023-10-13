@@ -14,6 +14,10 @@ public class AbstractDto<T> extends ActionForm  {
 	private Integer updatePsnCd;
 	private List<T> pageData;
 	private Integer page;
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 	public Integer getPage() {
 		return page;
