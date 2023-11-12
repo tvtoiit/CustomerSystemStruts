@@ -1,84 +1,24 @@
-/* Thiết lập font và màu chữ chung cho toàn bộ form */
-.edit-container__headerText {
-    font-family: Arial, sans-serif;
-    color: #333;
+:root {
+	--background: #ccffff;
 }
 
-/* Định dạng container chứa nội dung form */
-.edit-container {
-    margin: 20px auto;
-    width: 80%;
-    background-color: #f5f5f5;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+body {
+	background-color: var(--background);
 }
 
-/* Định dạng phần chào mừng và đăng xuất */
-.edit-container__wellcom {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
-    font-weight: bold;
-}
-
-/* Định dạng các trường nhập liệu và label */
-.edit-container__content {
-    margin-top: 20px;
-}
-
-.edit-container__content-Id,
-.edit-container__content-Name,
-.edit-container__content-Sex,
-.edit-container__content-Birthday,
-.edit-container__content-Email,
-.edit-container__content-Address {
-    margin-bottom: 10px;
-}
-
-.edit-container__content-IdText,
-.edit-container__contentName-input,
-.edit-container__content-Sexlable,
-.edit-container__contentBirthday-input,
-.edit-container__contentEmail-input,
-.edit-container__contentAddress-input {
-    font-weight: bold;
-}
-
-/* Định dạng các trường nhập liệu */
-.form-with__input {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    font-size: 16px;
-}
-
-/* Định dạng nút Save và Clear */
-.edit-container__btnContent {
-    margin-top: 20px;
-}
-
-.edit-container__btnContent-Save,
-#btnClearEdit {
-    background-color: #0066cc;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    margin-right: 10px;
-}
-
-/* Định dạng link Log Out */
-.edit-container__wellcomRight a {
-    text-decoration: none;
-    color: white;
-}
-
-/* Định dạng lỗi */
 .edit-container__content--error {
-    color: red;
-    font-weight: bold;
+	display: flex;
+	justify-content: center;
 }
+
+.main-edit__cotainer {
+	display: flex;
+	justify-content: center;
+}
+
+.edit-context__minWith label {
+	min-width: 200px;
+}
+
+
+
