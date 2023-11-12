@@ -21,17 +21,21 @@ public class T001 extends Action {
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		mstuser myForm = (mstuser) form;
+		HttpSession session = request.getSession();
 		String user = myForm.getUserId();
 		String pass = myForm.getPassWord();
-
+		
 		if (!isValidLogin(request,user, pass)) {
 			ActionErrors errors = new ActionErrors();
 			errors.add("login", new ActionMessage("message.error.user.not.exit"));
 			request.setAttribute("userId", user);
-			request.setAttribute("passWord", pass);
+			request.setAttribute("passWord", pass); 
 			saveErrors(request, errors);
 			return mapping.findForward("fail");
 		}
+		if (session != null) {
+            session.invalidate();
+        }
 		return mapping.findForward("success");
 	}
 

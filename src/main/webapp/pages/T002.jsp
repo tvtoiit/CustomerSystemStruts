@@ -18,9 +18,9 @@
 				</div>
 			<div class="search-container__context">
 				<div class="search-container__logo">
-					<div>Welcome </div>
+					<div>Welcome: <logic:notEmpty name="loggedInPsnCd"><bean:write name="loggedInPsnCd"/></logic:notEmpty></div>
 				</div>
-				<a href="#" class="search-container__logout">
+				<a href="./T001.do" class="search-container__logout">
 					Log Out
 				</a>
 			</div>
@@ -29,19 +29,14 @@
 			<div class="search-container__handalSearch">
 				<div class="search-container__handalSearch--margin handalSearch-customerName">
 					<div class="handalSearch-customercommon handalSearch-customerName__text">Customer Name</div>
-					<logic:empty name="name">
-						<input id="txtCustomerName" class="input_Customer--common" name="txtCustomerName" maxLength = "50" value=""/>
-					</logic:empty>
-					<logic:notEmpty name="name">
-						<input id="txtCustomerName" class="input_Customer--common" name="txtCustomerName" maxLength = "50" value="<bean:write name='name'/>"/>
-					</logic:notEmpty>
+					<input id="txtCustomerName" class="input_Customer--common" name="txtCustomerName" maxLength = "50" value="<logic:notEmpty name="name"><bean:write name='name'/></logic:notEmpty>"/>
 				</div>
 				<div class="search-container__handalSearch--margin handalSearch-customerSex">
 					<div class="handalSearch-customercommon handalSearch-customerSex__text">Sex</div>
-					<select name="sex" class ="input_Customer--select" id ="cboSex">
-						<option value="">blank</option>
-				      	<option value="0" >Male</option>
-		    			<option value="1" >Female</option>
+					<select name="sex" class="input_Customer--select" id="cboSex">
+					    <option value="">blank</option>
+					    <option value="0" <% if ("0".equals(request.getAttribute("sex"))) { %>selected<% } %>>Male</option>
+					    <option value="1" <% if ("1".equals(request.getAttribute("sex"))) { %>selected<% } %>>Female</option>
 					</select>
 				</div>
 				<div class="search-container__handalSearch--margin handalSearch-BirthdayFrom">
@@ -67,31 +62,24 @@
 			<div class="search-container__btnContext--chuyenhuong">
 			<input type="hidden" name="currentPage" value="<bean:write name="tag"/>"/>	
 		    <div class="search-container__btnContext--start">
-		    <logic:equal name="tag" value="1">
-		    	<button disabled type="submit" name="pageAction" value="first">&lt;&lt;</button>
-	     		<button disabled type="submit" name="pageAction" value="previous">&lt;</button>
-		    </logic:equal>
-		    <logic:greaterThan name="tag" value="1">
+
+
 		    	<button name="pageAction" value="first">&lt;&lt;</button>
 	     		<button name="pageAction" value="previous">&lt;</button>
-		    </logic:greaterThan>
+
 		        <label for="html" class="search-container__btnContext--textstart">Previous</label>
 		    </div>
 		    <div class="search-container__btnContext--end">
 		        <label for="html" class="search-container__btnContext--textend">Next</label>
-		     <logic:equal name="tag" value="<bean:write name='endl'/>">
-		     	<button disabled type="submit" name="pageAction" value="next">&gt;</button>  
-		        <button disabled type="submit" name="pageAction" value="last">&gt;&gt;</button>
-		     </logic:equal>
-		     <logic:lessThan name="tag" value="endl">
+
 		     	<button type="submit" name="pageAction" value="next">&gt;</button>  
-		        <button type="submit" name="pageAction" value="last">&gt;&gt;</button>
-		     </logic:lessThan>
+		        <button type="submit" <logic:notEmpty name="disBtnEndPage">disabled</logic:notEmpty>  name="pageAction" value="last">&gt;&gt;</button>
 		    </div>
 		</div>
+			</form>
 		<table class="search-container__table">
 	        <tr class="search-container__table--tieude">
-	        	<th><input type="checkbox" id="checkAll" name="checkboxAll" value=""></th>
+	        	<th><input type="checkbox" id="checkAll" name="checkboxAll" value="" onclick="toggleAllCheckboxes()"></th>
 	            <th>Customer ID</th>
 	            <th>Customer Name</th>
 	            <th>Sex</th>
@@ -120,8 +108,17 @@
 			<a href="./save-user.do" class="search-container__nav-btnAdd">Add New</a>
 			<button type="submit" name="action" value="delete" class ="search-container__nav-btnAdd">Delete</button>
 		</div>
-	</form>
+
 	</div>
 </div>
+<script>
+	<% 
+     Boolean invalidDateFormat = (Boolean) request.getAttribute("invalidDateFormat");
+     if (invalidDateFormat != null && invalidDateFormat) {
+    %>
+        alert("Ngày không hợp lệ!");
+    <% } %>
+   
+</script>
 </body>
 </html>

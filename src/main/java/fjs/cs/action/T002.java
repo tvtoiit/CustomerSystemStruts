@@ -1,5 +1,9 @@
 package fjs.cs.action;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,6 +37,10 @@ public class T002 extends Action {
         t002Dto.setPageData(paginatedList);
         request.setAttribute("tag", page);
         request.setAttribute("endl", endPage);
+        
+        if (page == endPage) {
+        	request.setAttribute("disBtnEndPage", endPage);
+        }
         request.setAttribute("model", t002Dto);
         return mapping.findForward("successT002");
     }
@@ -60,27 +68,67 @@ public class T002 extends Action {
     
     private int getPage(int currentPage,  mstcustomer t002Form, int endPage) {
     	String pageAction = t002Form.getPageAction();
-	    if (pageAction != null && !pageAction.isEmpty()) {
-	        if (pageAction.equals("first")) {
-	            return 1;
-	        } else if (pageAction.equals("previous")) {
-	            return Math.max(currentPage - 1, 1);
-	        } else if (pageAction.equals("next")) {
-	            return Math.min(currentPage + 1, endPage);
-	        } else if (pageAction.equals("last")) {
-	            return endPage;
-	        }
-	    }
+    	if ("first".equals(pageAction)) {
+    		 return 1;
+    	} else if ("previous".equals(pageAction)) {
+            return Math.max(currentPage - 1, 1);
+        } else if ("next".equals(pageAction)) {
+            return Math.min(currentPage + 1, endPage);
+        } else if ("last".equals(pageAction)) {
+            return endPage;
+        }
 	    return currentPage;
 	}
 
     private List<mstcustomer> handleSearch(HttpServletRequest request, mstcustomer t002Form, T002DaoImp impT002) {
         String name = t002Form.getTxtCustomerName();
+       
         String sex = t002Form.getSex();
+        request.setAttribute("sex", sex);
         String birthdayFrom = t002Form.getTxtBirthdayFromName();
+        
         String birthdayTo = t002Form.getTxtBirthdayToName();
+        if (birthdayTo != null && !isValidDateFormat(birthdayTo)) {
+            // Nếu không đúng định dạng, hiển thị thông báo và không thực hiện tìm kiếm
+            request.setAttribute("invalidDateFormat", true);
+            return new ArrayList<>(); // Hoặc trả về null hoặc danh sách rỗng tùy thuộc vào yêu cầu của bạn
+        }
+        
+        if (birthdayTo != null && birthdayFrom != null && !isStartDateBeforeEndDate(birthdayFrom, birthdayTo)) {
+            // Nếu không, hiển thị thông báo và không thực hiện tìm kiếm
+            request.setAttribute("invalidDateRange", true);
+            return new ArrayList<>(); // Hoặc trả về null hoặc danh sách rỗng tùy thuộc vào yêu cầu của bạn
+        }
+        
         List<mstcustomer> resultSearch = impT002.getDataSearch(name, sex, birthdayFrom, birthdayTo);
         return resultSearch;
+    }
+    
+    // Hàm kiểm tra định dạng ngày tháng "YYYY/MM/DD"
+    private boolean isValidDateFormat(String date) {
+        try {
+            // Sử dụng SimpleDateFormat để kiểm tra định dạng
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            sdf.setLenient(false);
+            sdf.parse(date);
+            return true;
+        } catch (ParseException e) {
+            // Nếu có lỗi ParseException, định dạng không đúng
+            return false;
+        }
+    }
+    
+ // Hàm kiểm tra xem ngày bắt đầu có nhỏ hơn ngày kết thúc hay không
+    private boolean isStartDateBeforeEndDate(String startDate, String endDate) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            Date start = sdf.parse(startDate);
+            Date end = sdf.parse(endDate);
+            return start.before(end);
+        } catch (ParseException e) {
+            // Nếu có lỗi ParseException, coi như không hợp lệ
+            return false;
+        }
     }
    
     private int calculateEndPage(int totalItems, int pageSize) {

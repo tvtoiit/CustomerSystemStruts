@@ -9,7 +9,7 @@ public class AbstractCommon {
 		Connection conn = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String URL = "jdbc:mysql://localhost:3306/customsystem";
+			String URL = "jdbc:mysql://localhost:3306/customersystem";
 			String USER = "root";
 			String PASS = "";
 			conn = DriverManager.getConnection(URL, USER, PASS);

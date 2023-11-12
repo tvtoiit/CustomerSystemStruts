@@ -14,32 +14,29 @@
 		</form-beans>
 	
 	 <global-forwards>
-        <forward
-        	name="T001"
-        	path="/pages/T001.jsp"/>
+	 	<forward name="/T001" path="/T001.do" />
     </global-forwards> 
     
     <action-mappings>
+    	<action path="/T001" forward="/T001" />
         <action
-        	input="/pages/T001.jsp"
            	path="/T001"
             type="fjs.cs.action.T001"
-            validate="true"
+            validate="false"
             name="loginBean"
 			scope="request">
-            <forward name="success" path="/T002.do"/>
-            <forward name="fail" path="/pages/T001.jsp"/>
+            <forward name="fail" path="/T001"/>
+            <forward name="success" path="/T002.do" redirect="true"/>
             
         </action>
        
         <action
-        	input="/pages/T002.jsp"
            	path="/T002"
             type="fjs.cs.action.T002"
             validate="true"
             name="searchBean"
 			scope="request">
-			 <forward name="successT002" path="/pages/T002.jsp"/>
+			 <forward name="successT002" path="/T002"/>
         </action>
         
         <action 
