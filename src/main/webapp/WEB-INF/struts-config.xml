@@ -11,6 +11,9 @@
         <form-bean
             name="searchBean"
             type="fjs.cs.dto.mstcustomer"/>
+        <form-bean
+            name="importBean"
+            type="fjs.cs.dto.ImportForm"/>
 		</form-beans>
 	
 	 <global-forwards>
@@ -53,6 +56,17 @@
         	path="/save-user"
         	type="org.apache.struts.actions.ForwardAction"
         	parameter="/pages/T003.jsp">
+        </action>
+         <action
+        	path="/Import"
+        	input="/pages/Import.jsp"
+        	type="fjs.cs.action.Import"
+        	name="importBean"
+        	validate="true"
+        	scope="request"
+        	>
+        	<forward name="T004" path="/pages/Import.jsp"/>
+        	<forward name="T002" path="/T002.do"/>
         </action>
         
        <!-- <action 

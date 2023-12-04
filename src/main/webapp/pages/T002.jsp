@@ -77,48 +77,78 @@
 		    </div>
 		</div>
 			</form>
-		<table class="search-container__table">
-	        <tr class="search-container__table--tieude">
-	        	<th><input type="checkbox" id="checkAll" name="checkboxAll" value="" onclick="toggleAllCheckboxes()"></th>
-	            <th>Customer ID</th>
-	            <th>Customer Name</th>
-	            <th>Sex</th>
-	            <th>Birthday</th>
-	            <th>Address</th>
+		<table class="search-container__table" id="sortableTable">
+	        <tr id="header">
+	        	 <logic:iterate id="setting" name="model" property="settingHeader">
+	        	 	<logic:equal name="setting" value="1">
+	        	 		<th><input type="checkbox" id="checkAll" name="checkboxAll" value="" onclick="toggleAllCheckboxes()"></th>
+	        	 	</logic:equal>
+	        	 	<logic:equal name="setting" value="2">
+	        	 		<th>Customer ID</th>
+	        	 	</logic:equal>
+	        	 	<logic:equal name="setting" value="3">
+	        	 		 <th>Customer Name</th>
+	        	 	</logic:equal>
+	        	 	<logic:equal name="setting" value="4">
+	        	 		 <th>Sex</th>
+	        	 	</logic:equal>
+	        	 	<logic:equal name="setting" value="5">
+	        	 		  <th>Birthday</th>
+	        	 	</logic:equal>
+	        	 	<logic:equal name="setting" value="6">
+	        	 		   <th>Address</th>
+	        	 	</logic:equal>
+	        	 	<logic:equal name="setting" value="7">
+	        	 		  <th>Email</th>
+	        	 	</logic:equal>
+	        	 </logic:iterate>
 	        </tr>
+	      
 	        <logic:iterate id="dept" name="model" property="pageData">
-			    <tr>
-			        <td><input type="checkbox" name="selectedCustomers" value="<bean:write name='dept' property='customerId'/>"></td>
-			        <td>
-						<html:link action="/T003">
-						    <html:param name="id">
-							    <bean:write name="dept" property="customerId" />
-							</html:param>
-						    <bean:write name="dept" property="customerId" />
-						</html:link>
-			        </td>
-			        <td><bean:write name='dept' property='customerName' /></td>
-			        <td><bean:write name='dept' property='sex' /></td>
-			        <td><bean:write name='dept' property='birthDay' /></td>
-			        <td><bean:write name='dept' property='address' /></td>
-			    </tr>
+			     <tr id="tr-table">
+			     	<logic:iterate id="setting" name="model" property="settingHeader">
+			     		<logic:equal name="setting" value="1">
+			                <td>
+			                    <input type="checkbox" name="selectedCustomers" value="<bean:write name='dept' property='customerId'/>">
+			                </td>
+			            </logic:equal>
+			            <logic:equal name="setting" value="2">
+			                <td>
+								<html:link action="/T003">
+								    <html:param name="id">
+									    <bean:write name="dept" property="customerId" />
+									</html:param>
+								    <bean:write name="dept" property="customerId" />
+								</html:link>
+					        </td>
+			            </logic:equal>
+			            <logic:equal name="setting" value="3">
+			                 <td><bean:write name='dept' property='customerName' /></td>
+			            </logic:equal>
+			            <logic:equal name="setting" value="4">
+			                <td><bean:write name='dept' property='sex' /></td>
+			            </logic:equal>
+			            <logic:equal name="setting" value="5">
+			                  <td><bean:write name='dept' property='birthDay' /></td>
+			            </logic:equal>
+			            <logic:equal name="setting" value="6">
+			                 <td><bean:write name='dept' property='address' /></td>
+			            </logic:equal>
+			            <logic:equal name="setting" value="7">
+			                 <td><bean:write name='dept' property='email' /></td>
+			            </logic:equal>
+			     	</logic:iterate>
+			    </tr> 
 			</logic:iterate>
+			
     	</table>
 		<div class="search-container__btnnav">
-			<a href="./save-user.do" class="search-container__nav-btnAdd">Add New</a>
+			<a href="./save-user.do" class="btn-import__class search-container__nav-btnAdd">Add New</a>
 			<button type="submit" name="action" value="delete" class ="search-container__nav-btnAdd">Delete</button>
+			<a href="./Import.do" class="btn-import__class">Import</a>
 		</div>
 
 	</div>
 </div>
-<script>
-	<% 
-     Boolean invalidDateFormat = (Boolean) request.getAttribute("invalidDateFormat");
-     if (invalidDateFormat != null && invalidDateFormat) {
-    %>
-        alert("Ngày không hợp lệ!");
-    <% } %>
-   
-</script>
 </body>
 </html>

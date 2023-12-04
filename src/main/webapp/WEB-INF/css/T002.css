@@ -153,3 +153,12 @@ th, td {
 .input_Customer--select {
 	height: 40px;
 }
+
+.btn-import__class {
+	padding: 5px 10px;
+	text-decoration: none;
+	background: #ccc;
+	color: #000;
+	
+	 font-weight: lighter;
+}

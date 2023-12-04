@@ -1,0 +1,11 @@
+#leftList {
+	width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+
+#rightList {
+	width: 150px;
+    height: 150px;
+    overflow: hidden;
+}

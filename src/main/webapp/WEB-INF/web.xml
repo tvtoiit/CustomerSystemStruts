@@ -20,6 +20,10 @@
         <servlet-name>action</servlet-name>
         <url-pattern>*.do</url-pattern> <!-- Điều này có thể thay đổi tùy theo URL pattern của bạn -->
     </servlet-mapping>
+   <context-param>
+	    <param-name>errorsFolderPath</param-name>
+	    <param-value>C:\\custom-errors</param-value>
+	</context-param>
    
    <servlet>
 		<servlet-name>T001Servlet</servlet-name>

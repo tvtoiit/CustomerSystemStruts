@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -25,6 +26,16 @@ public class T002 extends Action {
             HttpServletResponse response) throws Exception {
         T002DaoImp impT002 = new T002DaoImp();
         mstcustomer t002Form = (mstcustomer) form;
+        HttpSession session = request.getSession();
+        
+        // Lấy giá trị từ session
+        String settingHeaderObject[] = (String[])session.getAttribute("settingheader");
+        if (settingHeaderObject == null) {
+        	settingHeaderObject = new String[]{"3", "4", "5", "6"};
+        	session.setAttribute("settingheader", settingHeaderObject);
+        }
+        t002Dto.setSettingHeader(settingHeaderObject);
+        
         
         List<mstcustomer> listPaga = handleActions(request, t002Form, impT002);
 
